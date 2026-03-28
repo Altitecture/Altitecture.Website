@@ -1,0 +1,85 @@
+<h2>Which homepage layout approach?</h2>
+<p class="subtitle">All use the same Altitecture design system (dark theme, emerald accents, sharp edges)</p>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding: 24px; background: #131313;">
+      <!-- Wireframe A: Full-width sections -->
+      <div style="font-family: 'Space Grotesk', sans-serif; color: #89d6b3; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px;">Layout A</div>
+      <div style="background: #1c1b1b; border-left: 3px solid #89d6b3; padding: 16px; margin-bottom: 8px;">
+        <div style="color: #e5e2e1; font-size: 14px; font-weight: bold;">HERO — Full viewport</div>
+        <div style="color: #bfc9c3; font-size: 10px;">Centered headline + CTA</div>
+      </div>
+      <div style="background: #1c1b1b; padding: 12px; margin-bottom: 8px;">
+        <div style="color: #bfc9c3; font-size: 10px;">Services — 3-col grid</div>
+      </div>
+      <div style="background: #1c1b1b; padding: 12px; margin-bottom: 8px;">
+        <div style="color: #bfc9c3; font-size: 10px;">Process — Horizontal steps</div>
+      </div>
+      <div style="background: #1c1b1b; padding: 12px; margin-bottom: 8px;">
+        <div style="color: #bfc9c3; font-size: 10px;">Portfolio — Card grid</div>
+      </div>
+      <div style="background: #1c1b1b; padding: 12px; margin-bottom: 8px;">
+        <div style="color: #bfc9c3; font-size: 10px;">About + CTA + Footer</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Full-Width Sections</h3>
+      <p>Classic scrolling homepage. Each section spans the full width. Clean, predictable, easy to scan. The safe choice — works well for every audience.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding: 24px; background: #131313;">
+      <div style="font-family: 'Space Grotesk', sans-serif; color: #89d6b3; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px;">Layout B</div>
+      <div style="background: #1c1b1b; border-left: 3px solid #89d6b3; padding: 16px; margin-bottom: 8px;">
+        <div style="color: #e5e2e1; font-size: 14px; font-weight: bold;">HERO — Split layout</div>
+        <div style="display: flex; gap: 8px; margin-top: 8px;">
+          <div style="flex:1; background: #2a2a2a; padding: 8px;"><span style="color: #bfc9c3; font-size: 9px;">Headline + CTA</span></div>
+          <div style="flex:1; background: #2a2a2a; padding: 8px;"><span style="color: #bfc9c3; font-size: 9px;">Visual / Code</span></div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+        <div style="flex:1; background: #1c1b1b; padding: 8px;"><span style="color: #bfc9c3; font-size: 9px;">Service</span></div>
+        <div style="flex:1; background: #1c1b1b; padding: 8px;"><span style="color: #bfc9c3; font-size: 9px;">Service</span></div>
+        <div style="flex:1; background: #1c1b1b; padding: 8px;"><span style="color: #bfc9c3; font-size: 9px;">Service</span></div>
+      </div>
+      <div style="background: #1c1b1b; padding: 12px; margin-bottom: 8px;">
+        <div style="display: flex; gap: 4px;">
+          <div style="width: 20px; height: 20px; border: 1px solid #89d6b3; display: flex; align-items: center; justify-content: center;"><span style="color: #89d6b3; font-size: 8px;">1</span></div>
+          <div style="flex:1; height: 1px; background: #89d6b3; margin-top: 10px;"></div>
+          <div style="width: 20px; height: 20px; border: 1px solid #89d6b3; display: flex; align-items: center; justify-content: center;"><span style="color: #89d6b3; font-size: 8px;">2</span></div>
+          <div style="flex:1; height: 1px; background: #89d6b3; margin-top: 10px;"></div>
+          <div style="width: 20px; height: 20px; border: 1px solid #89d6b3; display: flex; align-items: center; justify-content: center;"><span style="color: #89d6b3; font-size: 8px;">3</span></div>
+        </div>
+        <div style="color: #bfc9c3; font-size: 9px; margin-top: 4px;">Process timeline</div>
+      </div>
+      <div style="background: #1c1b1b; padding: 8px;"><span style="color: #bfc9c3; font-size: 9px;">Portfolio + About + CTA</span></div>
+    </div>
+    <div class="card-body">
+      <h3>Split Hero + Structured Grid</h3>
+      <p>Hero has text on left, animated visual or code snippet on right. Sections use asymmetric grids. More dynamic, matches the Stitch reference's technical feel. My recommendation.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding: 24px; background: #131313;">
+      <div style="font-family: 'Space Grotesk', sans-serif; color: #89d6b3; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px;">Layout C</div>
+      <div style="background: #1c1b1b; border-left: 3px solid #89d6b3; padding: 16px; margin-bottom: 8px;">
+        <div style="color: #e5e2e1; font-size: 14px; font-weight: bold;">HERO — Immersive full-screen</div>
+        <div style="color: #bfc9c3; font-size: 10px;">Animated particle/grid background</div>
+        <div style="color: #bfc9c3; font-size: 10px;">Scroll indicator at bottom</div>
+      </div>
+      <div style="background: #1c1b1b; padding: 12px; margin-bottom: 8px;">
+        <div style="color: #bfc9c3; font-size: 10px;">Sections reveal on scroll (snap or fade)</div>
+      </div>
+      <div style="background: #0e0e0e; border: 1px solid #404944; padding: 12px;">
+        <div style="color: #bfc9c3; font-size: 10px;">Heavy on animation & motion</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>Immersive / Cinematic</h3>
+      <p>Full-screen hero with animated background. Sections reveal with scroll-triggered animations. High impact but heavier to build and can feel over-designed.</p>
+    </div>
+  </div>
+</div>

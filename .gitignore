@@ -1,0 +1,105 @@
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+test-results/
+playwright-report/
+node_modules/
+src/client/dist/
+src/client/src/routeTree.gen.ts
+tools/treatwell*.csv
+
+# Claude
+settings.local.json
+/todos
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# Rider
+.idea/
+
+# VS Code
+.tmpclaude/
+tmpclaude*
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+project.lock.json
+
+# MSBuild
+*.csproj.user
+*.msbuild.cache
+
+# Test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.trx
+*.coverage
+*.coveragexml
+coverage*.json
+coverage*.xml
+coverage/
+
+# Publish output
+[Pp]ublish/
+*.publishsettings
+
+# ASP.NET
+ScaffoldingReadMe.txt
+
+# Entity Framework
+*.db
+*.db-shm
+*.db-wal
+
+# Environment files
+.env
+.env.*
+!.env.example
+appsettings.local.json
+appsettings.*.local.json
+appsettings.Development.json
+.browser-state/
+.chrome-profile/
+.cookies.json
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# User-specific
+*.DotSettings.user
+
+# JetBrains Rider
+*.sln.iml
+.claude/worktrees/

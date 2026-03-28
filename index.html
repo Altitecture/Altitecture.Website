@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Altitecture | AI-Powered Software Development</title>
+    <meta name="description" content="Altitecture builds custom software faster with AI-powered development. Web apps, APIs, dashboards, and more." />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-dim": "#131313",
+                        "surface": "#131313",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-container": "#201f1f",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container-highest": "#353534",
+                        "surface-variant": "#353534",
+                        "surface-bright": "#3a3939",
+                        "primary": "#89d6b3",
+                        "primary-container": "#2e7c5e",
+                        "primary-fixed": "#a5f3ce",
+                        "primary-fixed-dim": "#89d6b3",
+                        "on-primary": "#003826",
+                        "on-primary-container": "#caffe4",
+                        "on-primary-fixed": "#002115",
+                        "on-primary-fixed-variant": "#005139",
+                        "secondary": "#95d3b9",
+                        "secondary-container": "#0b513d",
+                        "secondary-fixed": "#b0f0d5",
+                        "secondary-fixed-dim": "#95d3b9",
+                        "on-secondary": "#003829",
+                        "on-secondary-container": "#84c2a8",
+                        "on-secondary-fixed": "#002116",
+                        "on-secondary-fixed-variant": "#0b513d",
+                        "tertiary": "#b4ccbe",
+                        "tertiary-container": "#5d7468",
+                        "tertiary-fixed": "#d0e8d9",
+                        "tertiary-fixed-dim": "#b4ccbe",
+                        "on-tertiary": "#20352a",
+                        "on-tertiary-container": "#e0f9ea",
+                        "on-tertiary-fixed": "#0a1f16",
+                        "on-tertiary-fixed-variant": "#364b40",
+                        "on-surface": "#e5e2e1",
+                        "on-surface-variant": "#bfc9c3",
+                        "on-background": "#e5e2e1",
+                        "outline": "#89938d",
+                        "outline-variant": "#404944",
+                        "inverse-surface": "#e5e2e1",
+                        "inverse-on-surface": "#313030",
+                        "inverse-primary": "#186b4e",
+                        "surface-tint": "#89d6b3",
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "on-error-container": "#ffdad6",
+                        "background": "#131313"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .clipped-corner {
+            clip-path: polygon(0 0, 90% 0, 100% 20%, 100% 100%, 0 100%);
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #131313; }
+        ::-webkit-scrollbar-thumb { background: #353534; }
+        ::-webkit-scrollbar-thumb:hover { background: #89d6b3; }
+
+        /* Hero dot-grid animation */
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.15; }
+            50% { opacity: 0.3; }
+        }
+        .hero-grid {
+            background-image: radial-gradient(#89d6b3 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            animation: gridPulse 4s ease-in-out infinite;
+        }
+
+        /* Scroll indicator bounce */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+        .scroll-indicator {
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        /* Reveal only when JS is available */
+        .js .reveal { opacity: 0; transform: translateY(30px); }
+        .js .reveal-child { opacity: 0; transform: translateY(20px); }
+
+        /* Scroll reveal transitions */
+        .reveal {
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .js .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-child {
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        .js .revealed .reveal-child {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .revealed .reveal-child:nth-child(1) { transition-delay: 0.1s; }
+        .revealed .reveal-child:nth-child(2) { transition-delay: 0.2s; }
+        .revealed .reveal-child:nth-child(3) { transition-delay: 0.3s; }
+        .revealed .reveal-child:nth-child(4) { transition-delay: 0.4s; }
+
+        /* Mobile nav toggle (JS-driven) */
+        #mobile-nav.open { display: flex; }
+        #mobile-nav.open ~ .icon-menu { display: none; }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .hero-grid { animation: none; }
+            .scroll-indicator { animation: none; }
+            .js .reveal { opacity: 1; transform: none; transition: none; }
+            .js .reveal-child { opacity: 1; transform: none; transition: none; }
+        }
+
+        /* Portfolio dot-grid */
+        .portfolio-grid {
+            background-image: radial-gradient(#89d6b3 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            opacity: 0.1;
+        }
+
+        /* Firefox scrollbar */
+        html { scrollbar-color: #353534 #131313; scrollbar-width: thin; }
+    </style>
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+
+<!-- Fixed Navigation -->
+<nav class="fixed top-0 w-full z-50 h-16 bg-surface border-b border-outline-variant/10 flex justify-between items-center px-4 md:px-8">
+    <div class="flex items-center gap-4 md:gap-8">
+        <div class="flex items-center gap-2">
+            <img alt="Altitecture Logo" class="w-8 h-8" src="logo.png" />
+            <span class="text-xl font-bold tracking-tighter text-primary font-headline">Altitecture</span>
+        </div>
+        <div class="hidden md:flex gap-6">
+            <a class="text-on-surface opacity-70 font-headline uppercase tracking-tighter text-sm hover:text-primary focus-visible:text-primary focus-visible:outline focus-visible:outline-primary transition-colors duration-200" href="#services">Services</a>
+            <a class="text-on-surface opacity-70 font-headline uppercase tracking-tighter text-sm hover:text-primary focus-visible:text-primary focus-visible:outline focus-visible:outline-primary transition-colors duration-200" href="#process">Process</a>
+            <a class="text-on-surface opacity-70 font-headline uppercase tracking-tighter text-sm hover:text-primary focus-visible:text-primary focus-visible:outline focus-visible:outline-primary transition-colors duration-200" href="#portfolio">Portfolio</a>
+            <a class="text-on-surface opacity-70 font-headline uppercase tracking-tighter text-sm hover:text-primary focus-visible:text-primary focus-visible:outline focus-visible:outline-primary transition-colors duration-200" href="#about">About</a>
+            <a class="text-on-surface opacity-70 font-headline uppercase tracking-tighter text-sm hover:text-primary focus-visible:text-primary focus-visible:outline focus-visible:outline-primary transition-colors duration-200" href="#contact">Contact</a>
+        </div>
+    </div>
+    <div class="flex items-center gap-4">
+        <a href="#contact" class="hidden sm:block bg-primary text-on-primary font-headline uppercase text-xs font-bold tracking-widest px-6 py-2 clipped-corner active:scale-95 transition-transform focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface">
+            Get Started
+        </a>
+        <!-- Mobile hamburger -->
+        <button id="mobile-nav-btn" class="md:hidden cursor-pointer text-on-surface-variant hover:text-primary transition-colors" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span class="material-symbols-outlined icon-menu">menu</span>
+            <span class="material-symbols-outlined icon-close hidden">close</span>
+        </button>
+    </div>
+    <!-- Mobile nav dropdown -->
+    <div id="mobile-nav" class="hidden absolute top-16 left-0 w-full bg-surface-container-low border-b border-outline-variant/10 flex-col py-4 md:hidden">
+        <a class="px-6 py-3 text-on-surface font-headline uppercase tracking-tighter text-sm hover:text-primary hover:bg-surface-container-high focus-visible:text-primary focus-visible:bg-surface-container-high transition-all" href="#services">Services</a>
+        <a class="px-6 py-3 text-on-surface font-headline uppercase tracking-tighter text-sm hover:text-primary hover:bg-surface-container-high focus-visible:text-primary focus-visible:bg-surface-container-high transition-all" href="#process">Process</a>
+        <a class="px-6 py-3 text-on-surface font-headline uppercase tracking-tighter text-sm hover:text-primary hover:bg-surface-container-high focus-visible:text-primary focus-visible:bg-surface-container-high transition-all" href="#portfolio">Portfolio</a>
+        <a class="px-6 py-3 text-on-surface font-headline uppercase tracking-tighter text-sm hover:text-primary hover:bg-surface-container-high focus-visible:text-primary focus-visible:bg-surface-container-high transition-all" href="#about">About</a>
+        <a class="px-6 py-3 text-on-surface font-headline uppercase tracking-tighter text-sm hover:text-primary hover:bg-surface-container-high focus-visible:text-primary focus-visible:bg-surface-container-high transition-all" href="#contact">Contact</a>
+        <a class="mx-6 mt-2 py-2 bg-primary text-on-primary font-headline uppercase text-xs font-bold tracking-widest text-center clipped-corner" href="#contact">Get Started</a>
+    </div>
+</nav>
+
+<main>
+<!-- Hero Section -->
+<section class="relative h-screen flex items-center justify-center overflow-hidden">
+    <!-- Animated dot-grid background -->
+    <div class="hero-grid absolute inset-0 pointer-events-none"></div>
+    <!-- Subtle gradient overlay for depth -->
+    <div class="absolute inset-0 bg-gradient-to-b from-surface/80 via-transparent to-surface pointer-events-none"></div>
+
+    <!-- Hero content -->
+    <div class="relative z-10 text-center px-6 max-w-4xl">
+        <div class="flex items-center justify-center gap-3 text-primary mb-6">
+            <div class="h-[1px] w-12 bg-primary/40"></div>
+            <span class="text-[10px] font-bold tracking-[0.3em] uppercase">AI-Powered Development</span>
+            <div class="h-[1px] w-12 bg-primary/40"></div>
+        </div>
+        <h1 class="text-5xl md:text-7xl font-headline font-bold tracking-tighter mb-6 text-on-surface">
+            We build software<br/>with <span class="text-primary">AI</span>
+        </h1>
+        <p class="text-lg md:text-xl text-on-surface-variant font-body mb-10 max-w-2xl mx-auto">
+            Custom software, built faster than you thought possible
+        </p>
+        <a href="#contact" class="inline-block bg-primary text-on-primary font-headline uppercase text-sm font-bold tracking-widest px-10 py-3 clipped-corner active:scale-95 transition-transform hover:bg-primary-fixed focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface">
+            Get Started
+        </a>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator" aria-hidden="true">
+        <span class="material-symbols-outlined text-on-surface-variant/40 text-3xl">expand_more</span>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="reveal py-24 px-6 md:px-16 lg:px-24 max-w-7xl mx-auto">
+    <div class="flex items-center gap-3 text-primary mb-2">
+        <span class="text-[10px] font-bold tracking-[0.3em] uppercase">What We Build</span>
+        <div class="h-[1px] flex-grow bg-primary/20"></div>
+    </div>
+    <h2 class="text-4xl md:text-5xl font-headline font-bold tracking-tighter mb-12 text-on-surface">Services</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="reveal-child bg-surface-container-low p-8 border-l-4 border-primary">
+            <span class="material-symbols-outlined text-primary text-3xl mb-4">web</span>
+            <h3 class="font-headline text-lg font-bold uppercase tracking-tight mb-3 text-on-surface">Web Applications</h3>
+            <p class="text-sm text-on-surface-variant leading-relaxed">Full-stack web apps tailored to your workflow. From internal tools to customer-facing platforms.</p>
+        </div>
+        <div class="reveal-child bg-surface-container-low p-8 border-l-4 border-primary">
+            <span class="material-symbols-outlined text-primary text-3xl mb-4">api</span>
+            <h3 class="font-headline text-lg font-bold uppercase tracking-tight mb-3 text-on-surface">APIs & Integrations</h3>
+            <p class="text-sm text-on-surface-variant leading-relaxed">Connect your systems with robust, scalable APIs. We integrate with any platform or service.</p>
+        </div>
+        <div class="reveal-child bg-surface-container-low p-8 border-l-4 border-primary">
+            <span class="material-symbols-outlined text-primary text-3xl mb-4">analytics</span>
+            <h3 class="font-headline text-lg font-bold uppercase tracking-tight mb-3 text-on-surface">Dashboards & Analytics</h3>
+            <p class="text-sm text-on-surface-variant leading-relaxed">Real-time data visualization and business intelligence. See your data clearly, act on it faster.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Process Section -->
+<section id="process" class="reveal py-24 px-6 md:px-16 lg:px-24 bg-surface-container-low">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex items-center gap-3 text-primary mb-2">
+            <span class="text-[10px] font-bold tracking-[0.3em] uppercase">How It Works</span>
+            <div class="h-[1px] flex-grow bg-primary/20"></div>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-headline font-bold tracking-tighter mb-16 text-on-surface">Our Process</h2>
+
+        <!-- Desktop: horizontal timeline -->
+        <div class="hidden md:grid grid-cols-4 gap-0 relative">
+            <!-- Connector line -->
+            <div class="absolute top-6 left-[calc(12.5%+20px)] right-[calc(12.5%+20px)] h-[1px] bg-primary/30"></div>
+
+            <div class="reveal-child flex flex-col items-center text-center px-4">
+                <div class="w-12 h-12 border-2 border-primary flex items-center justify-center mb-6 bg-surface-container-low relative z-10">
+                    <span class="text-primary font-headline font-bold text-lg">1</span>
+                </div>
+                <h3 class="font-headline font-bold uppercase tracking-tight mb-2 text-on-surface">Brief</h3>
+                <p class="text-sm text-on-surface-variant">Tell us what you need</p>
+            </div>
+            <div class="reveal-child flex flex-col items-center text-center px-4">
+                <div class="w-12 h-12 border-2 border-primary flex items-center justify-center mb-6 bg-surface-container-low relative z-10">
+                    <span class="text-primary font-headline font-bold text-lg">2</span>
+                </div>
+                <h3 class="font-headline font-bold uppercase tracking-tight mb-2 text-on-surface">Architect</h3>
+                <p class="text-sm text-on-surface-variant">We design the solution</p>
+            </div>
+            <div class="reveal-child flex flex-col items-center text-center px-4">
+                <div class="w-12 h-12 border-2 border-primary flex items-center justify-center mb-6 bg-surface-container-low relative z-10">
+                    <span class="text-primary font-headline font-bold text-lg">3</span>
+                </div>
+                <h3 class="font-headline font-bold uppercase tracking-tight mb-2 text-on-surface">Build</h3>
+                <p class="text-sm text-on-surface-variant">AI-powered development</p>
+            </div>
+            <div class="reveal-child flex flex-col items-center text-center px-4">
+                <div class="w-12 h-12 border-2 border-primary flex items-center justify-center mb-6 bg-surface-container-low relative z-10">
+                    <span class="text-primary font-headline font-bold text-lg">4</span>
+                </div>
+                <h3 class="font-headline font-bold uppercase tracking-tight mb-2 text-on-surface">Ship</h3>
+                <p class="text-sm text-on-surface-variant">Deployed and supported</p>
+            </div>
+        </div>
+
+        <!-- Mobile: vertical timeline -->
+        <div class="md:hidden flex flex-col gap-8 relative pl-8 border-l-2 border-primary/30">
+            <div class="reveal-child relative">
+                <div class="absolute -left-[calc(2rem+5px)] w-10 h-10 border-2 border-primary flex items-center justify-center bg-surface-container-low">
+                    <span class="text-primary font-headline font-bold">1</span>
+                </div>
+                <h3 class="font-headline font-bold uppercase tracking-tight mb-1 text-on-surface">Brief</h3>
+                <p class="text-sm text-on-surface-variant">Tell us what you need</p>
+            </div>
+            <div class="reveal-child relative">
+                <div class="absolute -left-[calc(2rem+5px)] w-10 h-10 border-2 border-primary flex items-center justify-center bg-surface-container-low">
+                    <span class="text-primary font-headline font-bold">2</span>
+                </div>
+                <h3 class="font-headline font-bold uppercase tracking-tight mb-1 text-on-surface">Architect</h3>
+                <p class="text-sm text-on-surface-variant">We design the solution</p>
+            </div>
+            <div class="reveal-child relative">
+                <div class="absolute -left-[calc(2rem+5px)] w-10 h-10 border-2 border-primary flex items-center justify-center bg-surface-container-low">
+                    <span class="text-primary font-headline font-bold">3</span>
+                </div>
+                <h3 class="font-headline font-bold uppercase tracking-tight mb-1 text-on-surface">Build</h3>
+                <p class="text-sm text-on-surface-variant">AI-powered development</p>
+            </div>
+            <div class="reveal-child relative">
+                <div class="absolute -left-[calc(2rem+5px)] w-10 h-10 border-2 border-primary flex items-center justify-center bg-surface-container-low">
+                    <span class="text-primary font-headline font-bold">4</span>
+                </div>
+                <h3 class="font-headline font-bold uppercase tracking-tight mb-1 text-on-surface">Ship</h3>
+                <p class="text-sm text-on-surface-variant">Deployed and supported</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Section -->
+<section id="portfolio" class="reveal py-24 px-6 md:px-16 lg:px-24 max-w-7xl mx-auto">
+    <div class="flex items-center gap-3 text-primary mb-2">
+        <span class="text-[10px] font-bold tracking-[0.3em] uppercase">Our Work</span>
+        <div class="h-[1px] flex-grow bg-primary/20"></div>
+    </div>
+    <h2 class="text-4xl md:text-5xl font-headline font-bold tracking-tighter mb-12 text-on-surface">Portfolio</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="reveal-child group">
+            <div class="aspect-video bg-surface-container-lowest border border-outline-variant/10 relative overflow-hidden mb-4">
+                <div class="absolute inset-0 portfolio-grid"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary/20 text-6xl group-hover:scale-110 transition-transform">dashboard</span>
+                </div>
+            </div>
+            <h3 class="font-headline font-bold text-lg tracking-tight mb-2 text-on-surface">FinTrack Analytics Platform</h3>
+            <p class="text-sm text-on-surface-variant mb-3">Real-time financial dashboard with automated reporting and predictive analytics for portfolio management.</p>
+            <div class="flex flex-wrap gap-2">
+                <span class="text-[10px] font-bold text-on-surface-variant/60 uppercase border border-outline-variant/20 px-2 py-1">React</span>
+                <span class="text-[10px] font-bold text-on-surface-variant/60 uppercase border border-outline-variant/20 px-2 py-1">Python</span>
+                <span class="text-[10px] font-bold text-on-surface-variant/60 uppercase border border-outline-variant/20 px-2 py-1">PostgreSQL</span>
+            </div>
+        </div>
+
+        <div class="reveal-child group">
+            <div class="aspect-video bg-surface-container-lowest border border-outline-variant/10 relative overflow-hidden mb-4">
+                <div class="absolute inset-0 portfolio-grid"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary/20 text-6xl group-hover:scale-110 transition-transform">inventory_2</span>
+                </div>
+            </div>
+            <h3 class="font-headline font-bold text-lg tracking-tight mb-2 text-on-surface">LogiCore Supply Chain</h3>
+            <p class="text-sm text-on-surface-variant mb-3">End-to-end supply chain management system with real-time tracking, automated procurement, and demand forecasting.</p>
+            <div class="flex flex-wrap gap-2">
+                <span class="text-[10px] font-bold text-on-surface-variant/60 uppercase border border-outline-variant/20 px-2 py-1">Next.js</span>
+                <span class="text-[10px] font-bold text-on-surface-variant/60 uppercase border border-outline-variant/20 px-2 py-1">Node.js</span>
+                <span class="text-[10px] font-bold text-on-surface-variant/60 uppercase border border-outline-variant/20 px-2 py-1">MongoDB</span>
+            </div>
+        </div>
+
+        <div class="reveal-child group">
+            <div class="aspect-video bg-surface-container-lowest border border-outline-variant/10 relative overflow-hidden mb-4">
+                <div class="absolute inset-0 portfolio-grid"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary/20 text-6xl group-hover:scale-110 transition-transform">medical_services</span>
+                </div>
+            </div>
+            <h3 class="font-headline font-bold text-lg tracking-tight mb-2 text-on-surface">MedSync Patient Portal</h3>
+            <p class="text-sm text-on-surface-variant mb-3">HIPAA-compliant patient management platform with scheduling, records access, and secure messaging.</p>
+            <div class="flex flex-wrap gap-2">
+                <span class="text-[10px] font-bold text-on-surface-variant/60 uppercase border border-outline-variant/20 px-2 py-1">Vue.js</span>
+                <span class="text-[10px] font-bold text-on-surface-variant/60 uppercase border border-outline-variant/20 px-2 py-1">Go</span>
+                <span class="text-[10px] font-bold text-on-surface-variant/60 uppercase border border-outline-variant/20 px-2 py-1">AWS</span>
+            </div>
+        </div>
+
+        <div class="reveal-child group">
+            <div class="aspect-video bg-surface-container-lowest border border-outline-variant/10 relative overflow-hidden mb-4">
+                <div class="absolute inset-0 portfolio-grid"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary/20 text-6xl group-hover:scale-110 transition-transform">storefront</span>
+                </div>
+            </div>
+            <h3 class="font-headline font-bold text-lg tracking-tight mb-2 text-on-surface">Vendo Commerce Engine</h3>
+            <p class="text-sm text-on-surface-variant mb-3">Headless e-commerce platform with AI-powered product recommendations and multi-channel inventory sync.</p>
+            <div class="flex flex-wrap gap-2">
+                <span class="text-[10px] font-bold text-on-surface-variant/60 uppercase border border-outline-variant/20 px-2 py-1">React</span>
+                <span class="text-[10px] font-bold text-on-surface-variant/60 uppercase border border-outline-variant/20 px-2 py-1">Rust</span>
+                <span class="text-[10px] font-bold text-on-surface-variant/60 uppercase border border-outline-variant/20 px-2 py-1">Redis</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="reveal py-24 px-6 md:px-16 lg:px-24 bg-surface-container-low">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex items-center gap-3 text-primary mb-2">
+            <span class="text-[10px] font-bold tracking-[0.3em] uppercase">Who We Are</span>
+            <div class="h-[1px] flex-grow bg-primary/20"></div>
+        </div>
+        <h2 class="text-4xl md:text-5xl font-headline font-bold tracking-tighter mb-12 text-on-surface">About</h2>
+
+        <div class="flex flex-col md:flex-row gap-12 items-center">
+            <div class="reveal-child md:w-3/5">
+                <p class="text-lg text-on-surface-variant leading-relaxed mb-6">
+                    Altitecture is an AI-first software company. We combine deep engineering expertise with modern AI tooling to deliver custom software at a pace and quality that traditional development can't match.
+                </p>
+                <p class="text-lg text-on-surface-variant leading-relaxed">
+                    We work with founders, CTOs, and product teams who need reliable software built fast — without compromising on architecture or maintainability.
+                </p>
+            </div>
+            <div class="reveal-child md:w-2/5 flex items-center justify-center">
+                <div class="relative w-48 h-48">
+                    <div class="absolute inset-0 border-2 border-primary/20 rotate-12"></div>
+                    <div class="absolute inset-4 border-2 border-primary/10 -rotate-6"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <img alt="Altitecture Logo" class="w-24 h-24 opacity-60" src="logo.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section id="contact" class="reveal py-24 px-6 md:px-16 lg:px-24 bg-primary-container relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-48 h-48 bg-on-primary-container/5 -mr-24 -mt-24 rotate-45"></div>
+    <div class="max-w-7xl mx-auto relative z-10 text-center">
+        <h2 class="text-4xl md:text-5xl font-headline font-bold tracking-tighter mb-4 text-on-primary-container">Ready to build?</h2>
+        <p class="text-lg text-on-primary-container/70 mb-10 max-w-xl mx-auto">
+            Tell us about your project. We'll show you what AI-powered development can do.
+        </p>
+        <a href="mailto:hello@altitecture.com" class="inline-block bg-on-primary-container text-primary-container font-headline uppercase text-sm font-bold tracking-widest px-10 py-3 clipped-corner active:scale-95 transition-transform hover:opacity-90 focus-visible:ring-2 focus-visible:ring-on-primary-container focus-visible:ring-offset-2 focus-visible:ring-offset-primary-container">
+            Get in Touch
+        </a>
+    </div>
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant/10 py-8 px-6 md:px-16 lg:px-24">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex items-center gap-2">
+            <img alt="Altitecture Logo" class="w-6 h-6" src="logo.png" />
+            <span class="text-sm font-bold tracking-tighter text-primary font-headline">Altitecture</span>
+        </div>
+        <div class="flex gap-6">
+            <a class="text-on-surface-variant text-xs uppercase tracking-wider hover:text-primary transition-colors" href="#services">Services</a>
+            <a class="text-on-surface-variant text-xs uppercase tracking-wider hover:text-primary transition-colors" href="#process">Process</a>
+            <a class="text-on-surface-variant text-xs uppercase tracking-wider hover:text-primary transition-colors" href="#portfolio">Portfolio</a>
+            <a class="text-on-surface-variant text-xs uppercase tracking-wider hover:text-primary transition-colors" href="#about">About</a>
+            <a class="text-on-surface-variant text-xs uppercase tracking-wider hover:text-primary transition-colors" href="#contact">Contact</a>
+        </div>
+        <p class="text-on-surface-variant/40 text-xs">&copy; 2026 Altitecture. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Visual Accents -->
+<div class="fixed bottom-0 left-0 w-full h-[1px] bg-primary/10 pointer-events-none"></div>
+<div class="fixed top-0 left-0 w-[1px] h-screen bg-primary/5 pointer-events-none"></div>
+
+<!-- Scroll Reveal -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Mobile nav toggle
+        const navBtn = document.getElementById('mobile-nav-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        const iconMenu = navBtn.querySelector('.icon-menu');
+        const iconClose = navBtn.querySelector('.icon-close');
+
+        function toggleNav() {
+            const isOpen = mobileNav.classList.toggle('open');
+            iconMenu.classList.toggle('hidden', isOpen);
+            iconClose.classList.toggle('hidden', !isOpen);
+            navBtn.setAttribute('aria-expanded', isOpen);
+        }
+
+        navBtn.addEventListener('click', toggleNav);
+
+        // Close mobile nav on link click
+        document.querySelectorAll('#mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                iconMenu.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+                navBtn.setAttribute('aria-expanded', 'false');
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

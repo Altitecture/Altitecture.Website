@@ -1,6 +1,6 @@
 # Altitecture Website
 
-Marketing website for [Altitecture](mailto:hello@altitecture.com) — an AI-first software development company.
+Marketing website for [Altitecture](mailto:info@altitecture.nl) — an AI-first software development company.
 
 ## Overview
 

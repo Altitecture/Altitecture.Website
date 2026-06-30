@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html class="dark" lang="nl">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Altitecture One | MDTO-archivering &amp; SharePoint-inrichting</title>
+    <meta name="description" content="Altitecture One — SaaS voor Nederlandse overheid: archiveer SharePoint-documenten naar MDTO en richt SharePoint in, conform de Archiefwet." />
+    <link rel="canonical" href="https://altitecture.nl/altitecture-one/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Altitecture One | MDTO-archivering & SharePoint-inrichting" />
+    <meta property="og:description" content="SaaS voor Nederlandse overheid: archiveer SharePoint-documenten naar MDTO en richt SharePoint in, conform de Archiefwet." />
+    <meta property="og:url" content="https://altitecture.nl/altitecture-one/" />
+    <meta property="og:site_name" content="Altitecture" />
+    <meta property="og:image" content="https://altitecture.nl/images/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="nl_NL" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Altitecture One | MDTO-archivering & SharePoint-inrichting" />
+    <meta name="twitter:description" content="SaaS voor Nederlandse overheid: archiveer SharePoint-documenten naar MDTO." />
+    <meta name="twitter:image" content="https://altitecture.nl/images/og-image.png" />
+
+    <!-- Additional SEO -->
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Altitecture" />
+    <meta name="keywords" content="Altitecture One, MDTO, MDTO export, archiveren, Archiefwet, e-Depot, Selectielijst, SharePoint, Microsoft 365, gemeente, overheid, SharePoint provisioning, vernietigingsreviews" />
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#131313" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-dim": "#131313",
+                        "surface": "#131313",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-container": "#201f1f",
+                        "surface-container-high": "#2a2a2a",
+                        "surface-container-highest": "#353534",
+                        "surface-variant": "#353534",
+                        "surface-bright": "#3a3939",
+                        "primary": "#89d6b3",
+                        "primary-container": "#2e7c5e",
+                        "primary-fixed": "#a5f3ce",
+                        "primary-fixed-dim": "#89d6b3",
+                        "on-primary": "#003826",
+                        "on-primary-container": "#caffe4",
+                        "on-primary-fixed": "#002115",
+                        "on-primary-fixed-variant": "#005139",
+                        "secondary": "#95d3b9",
+                        "secondary-container": "#0b513d",
+                        "secondary-fixed": "#b0f0d5",
+                        "secondary-fixed-dim": "#95d3b9",
+                        "on-secondary": "#003829",
+                        "on-secondary-container": "#84c2a8",
+                        "on-secondary-fixed": "#002116",
+                        "on-secondary-fixed-variant": "#0b513d",
+                        "tertiary": "#b4ccbe",
+                        "tertiary-container": "#5d7468",
+                        "tertiary-fixed": "#d0e8d9",
+                        "tertiary-fixed-dim": "#b4ccbe",
+                        "on-tertiary": "#20352a",
+                        "on-tertiary-container": "#e0f9ea",
+                        "on-tertiary-fixed": "#0a1f16",
+                        "on-tertiary-fixed-variant": "#364b40",
+                        "on-surface": "#e5e2e1",
+                        "on-surface-variant": "#bfc9c3",
+                        "on-background": "#e5e2e1",
+                        "outline": "#89938d",
+                        "outline-variant": "#404944",
+                        "inverse-surface": "#e5e2e1",
+                        "inverse-on-surface": "#313030",
+                        "inverse-primary": "#186b4e",
+                        "surface-tint": "#89d6b3",
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "error-container": "#93000a",
+                        "on-error-container": "#ffdad6",
+                        "background": "#131313"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .clipped-corner {
+            clip-path: polygon(0 0, 90% 0, 100% 20%, 100% 100%, 0 100%);
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #131313; }
+        ::-webkit-scrollbar-thumb { background: #353534; }
+        ::-webkit-scrollbar-thumb:hover { background: #89d6b3; }
+
+        /* Hero dot-grid animation */
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.25; }
+            50% { opacity: 0.45; }
+        }
+        .hero-grid {
+            background-image: radial-gradient(#89d6b3 0.8px, transparent 0.8px);
+            background-size: 24px 24px;
+            animation: gridPulse 4s ease-in-out infinite;
+        }
+
+        /* Scroll indicator bounce */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+        .scroll-indicator {
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        /* Reveal only when JS is available */
+        .js .reveal { opacity: 0; transform: translateY(30px); }
+        .js .reveal-child { opacity: 0; transform: translateY(20px); }
+
+        /* Scroll reveal transitions */
+        .reveal {
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .js .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-child {
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        .js .revealed .reveal-child {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .revealed .reveal-child:nth-child(1) { transition-delay: 0.1s; }
+        .revealed .reveal-child:nth-child(2) { transition-delay: 0.2s; }
+        .revealed .reveal-child:nth-child(3) { transition-delay: 0.3s; }
+        .revealed .reveal-child:nth-child(4) { transition-delay: 0.4s; }
+        .revealed .reveal-child:nth-child(5) { transition-delay: 0.5s; }
+
+        /* Mobile nav toggle (JS-driven) */
+        #mobile-nav.open { display: flex; }
+        #mobile-nav.open ~ .icon-menu { display: none; }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .hero-grid { animation: none; }
+            .scroll-indicator { animation: none; }
+            .js .reveal { opacity: 1; transform: none; transition: none; }
+            .js .reveal-child { opacity: 1; transform: none; transition: none; }
+        }
+
+        /* Portfolio dot-grid */
+        .portfolio-grid {
+            background-image: radial-gradient(#89d6b3 0.8px, transparent 0.8px);
+            background-size: 20px 20px;
+            opacity: 0.15;
+        }
+
+        /* Firefox scrollbar */
+        html { scrollbar-color: #353534 #131313; scrollbar-width: thin; }
+    </style>
+    <script>document.documentElement.classList.add('js');</script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Altitecture One",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "url": "https://altitecture.nl/altitecture-one/",
+        "publisher": { "@type": "Organization", "name": "Altitecture", "url": "https://altitecture.nl" },
+        "description": "Multi-tenant SaaS voor MDTO-archivering vanuit SharePoint en geautomatiseerde SharePoint-inrichting, voor Nederlandse overheidsorganisaties.",
+        "inLanguage": "nl"
+    }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+
+<!-- Fixed Navigation -->
+<nav class="fixed top-0 w-full z-50 h-16 bg-surface border-b border-outline-variant/10 flex justify-between items-center px-4 md:px-8">
+    <div class="flex items-center gap-4 md:gap-8">
+        <a href="/" class="flex items-center gap-2">
+            <img alt="Altitecture Logo" class="w-8 h-8" src="/images/logo.png" />
+            <span class="text-xl font-bold tracking-tighter text-primary font-headline">Altitecture</span>
+        </a>
+        <div class="hidden md:flex gap-6">
+            <a class="text-on-surface opacity-70 font-headline uppercase tracking-tighter text-sm hover:text-primary focus-visible:text-primary focus-visible:outline focus-visible:outline-primary transition-colors duration-200" href="/#services">Diensten</a>
+            <a class="text-on-surface opacity-70 font-headline uppercase tracking-tighter text-sm hover:text-primary focus-visible:text-primary focus-visible:outline focus-visible:outline-primary transition-colors duration-200" href="/#process">Werkwijze</a>
+            <a class="text-on-surface opacity-70 font-headline uppercase tracking-tighter text-sm hover:text-primary focus-visible:text-primary focus-visible:outline focus-visible:outline-primary transition-colors duration-200" href="/#product">Product</a>
+            <a class="text-on-surface opacity-70 font-headline uppercase tracking-tighter text-sm hover:text-primary focus-visible:text-primary focus-visible:outline focus-visible:outline-primary transition-colors duration-200" href="/#portfolio">Portfolio</a>
+            <a class="text-on-surface opacity-70 font-headline uppercase tracking-tighter text-sm hover:text-primary focus-visible:text-primary focus-visible:outline focus-visible:outline-primary transition-colors duration-200" href="/#about">Over Ons</a>
+            <a class="text-on-surface opacity-70 font-headline uppercase tracking-tighter text-sm hover:text-primary focus-visible:text-primary focus-visible:outline focus-visible:outline-primary transition-colors duration-200" href="/#contact">Contact</a>
+        </div>
+    </div>
+    <div class="flex items-center gap-4">
+        <a href="mailto:info@altitecture.nl" class="hidden sm:block bg-primary text-on-primary font-headline uppercase text-xs font-bold tracking-widest px-6 py-2 clipped-corner active:scale-95 transition-transform focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface">
+            Demo aanvragen
+        </a>
+        <!-- Mobile hamburger -->
+        <button id="mobile-nav-btn" class="md:hidden cursor-pointer text-on-surface-variant hover:text-primary transition-colors" aria-label="Navigatiemenu openen" aria-expanded="false">
+            <span class="material-symbols-outlined icon-menu">menu</span>
+            <span class="material-symbols-outlined icon-close hidden">close</span>
+        </button>
+    </div>
+    <!-- Mobile nav dropdown -->
+    <div id="mobile-nav" class="hidden absolute top-16 left-0 w-full bg-surface-container-low border-b border-outline-variant/10 flex-col py-4 md:hidden">
+        <a class="px-6 py-3 text-on-surface font-headline uppercase tracking-tighter text-sm hover:text-primary hover:bg-surface-container-high focus-visible:text-primary focus-visible:bg-surface-container-high transition-all" href="/#services">Diensten</a>
+        <a class="px-6 py-3 text-on-surface font-headline uppercase tracking-tighter text-sm hover:text-primary hover:bg-surface-container-high focus-visible:text-primary focus-visible:bg-surface-container-high transition-all" href="/#process">Werkwijze</a>
+        <a class="px-6 py-3 text-on-surface font-headline uppercase tracking-tighter text-sm hover:text-primary hover:bg-surface-container-high focus-visible:text-primary focus-visible:bg-surface-container-high transition-all" href="/#product">Product</a>
+        <a class="px-6 py-3 text-on-surface font-headline uppercase tracking-tighter text-sm hover:text-primary hover:bg-surface-container-high focus-visible:text-primary focus-visible:bg-surface-container-high transition-all" href="/#portfolio">Portfolio</a>
+        <a class="px-6 py-3 text-on-surface font-headline uppercase tracking-tighter text-sm hover:text-primary hover:bg-surface-container-high focus-visible:text-primary focus-visible:bg-surface-container-high transition-all" href="/#about">Over Ons</a>
+        <a class="px-6 py-3 text-on-surface font-headline uppercase tracking-tighter text-sm hover:text-primary hover:bg-surface-container-high focus-visible:text-primary focus-visible:bg-surface-container-high transition-all" href="/#contact">Contact</a>
+        <a class="mx-6 mt-2 py-2 bg-primary text-on-primary font-headline uppercase text-xs font-bold tracking-widest text-center clipped-corner" href="mailto:info@altitecture.nl">Demo aanvragen</a>
+    </div>
+</nav>
+
+<main>
+<!-- Sub-hero -->
+<section class="relative pt-32 pb-20 px-6 md:px-16 lg:px-24 overflow-hidden">
+    <div class="hero-grid absolute inset-0 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-surface/80 via-transparent to-surface pointer-events-none"></div>
+    <div class="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+            <div class="flex items-center gap-3 text-primary mb-4">
+                <div class="h-[1px] w-12 bg-primary/40"></div>
+                <span class="text-[10px] font-bold tracking-[0.3em] uppercase">Altitecture One</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-headline font-bold tracking-tighter mb-6 text-on-surface">MDTO-archivering en SharePoint-beheer, <span class="text-primary">zonder gedoe</span></h1>
+            <p class="text-lg text-on-surface-variant leading-relaxed mb-8 max-w-xl">Altitecture One archiveert SharePoint-documenten naar het MDTO-formaat voor het e-Depot en richt nieuwe SharePoint-omgevingen in uit blauwdrukken — gebouwd voor Nederlandse overheidsorganisaties.</p>
+            <div class="flex flex-wrap gap-4">
+                <a href="mailto:info@altitecture.nl" class="inline-block bg-primary text-on-primary font-headline uppercase text-sm font-bold tracking-widest px-8 py-3 clipped-corner active:scale-95 transition-transform hover:bg-primary-fixed focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface">Demo aanvragen</a>
+                <a href="/#product" class="inline-block border border-outline-variant/40 text-on-surface-variant font-headline uppercase text-sm font-bold tracking-widest px-8 py-3 clipped-corner hover:text-primary hover:border-primary transition-colors">← Terug naar home</a>
+            </div>
+        </div>
+        <div class="aspect-video bg-surface-container-lowest border border-outline-variant/10 relative overflow-hidden" role="img" aria-label="SharePoint-documenten worden via Altitecture One omgezet naar MDTO-archiefformaat voor het e-Depot">
+            <div class="portfolio-grid absolute inset-0"></div>
+            <pre class="absolute top-4 right-6 text-[9px] leading-tight text-primary/20 font-mono hidden sm:block select-none" aria-hidden="true">&lt;informatieobject&gt;
+  &lt;naam&gt;…&lt;/naam&gt;
+  &lt;classificatie&gt;…&lt;/classificatie&gt;
+  &lt;waardering&gt;…&lt;/waardering&gt;
+  &lt;archiefvormer&gt;…&lt;/archiefvormer&gt;
+&lt;/informatieobject&gt;</pre>
+            <div class="absolute inset-0 flex items-center justify-center px-4">
+                <div class="flex items-center gap-2 md:gap-4">
+                    <div class="flex flex-col items-center gap-2">
+                        <span class="material-symbols-outlined text-on-surface-variant text-3xl border border-outline-variant/30 p-3">cloud</span>
+                        <span class="text-[10px] uppercase tracking-wider text-on-surface-variant/70">SharePoint</span>
+                    </div>
+                    <span class="material-symbols-outlined text-primary">arrow_forward</span>
+                    <div class="flex flex-col items-center gap-2">
+                        <span class="material-symbols-outlined text-on-primary text-3xl bg-primary p-3">hub</span>
+                        <span class="text-[10px] uppercase tracking-wider text-primary">Altitecture One</span>
+                    </div>
+                    <span class="material-symbols-outlined text-primary">arrow_forward</span>
+                    <div class="flex flex-col items-center gap-2">
+                        <span class="material-symbols-outlined text-on-surface-variant text-3xl border border-outline-variant/30 p-3">inventory_2</span>
+                        <span class="text-[10px] uppercase tracking-wider text-on-surface-variant/70">MDTO / e-Depot</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Het probleem -->
+<section class="reveal py-20 px-6 md:px-16 lg:px-24 bg-surface-container-low">
+    <div class="max-w-4xl mx-auto">
+        <div class="flex items-center gap-3 text-primary mb-2"><span class="text-[10px] font-bold tracking-[0.3em] uppercase">De Uitdaging</span><div class="h-[1px] flex-grow bg-primary/20"></div></div>
+        <h2 class="text-3xl md:text-4xl font-headline font-bold tracking-tighter mb-6 text-on-surface">Archiveren conform de Archiefwet is complex</h2>
+        <p class="text-lg text-on-surface-variant leading-relaxed mb-4">Overheidsorganisaties moeten informatie duurzaam toegankelijk bewaren of op tijd vernietigen — volgens de Selectielijst en in het MDTO-formaat van het Nationaal Archief. In de praktijk staat die informatie verspreid in SharePoint en Microsoft 365.</p>
+        <p class="text-lg text-on-surface-variant leading-relaxed">Handmatig dossiers beoordelen, metadata mappen en SIP-pakketten samenstellen voor het e-Depot is foutgevoelig en tijdrovend. Altitecture One automatiseert die keten — met behoud van een volledige audit-trail.</p>
+    </div>
+</section>
+
+<!-- Module 1: MDTO Export -->
+<section class="reveal py-20 px-6 md:px-16 lg:px-24">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="reveal-child">
+            <div class="flex items-center gap-3 text-primary mb-2"><span class="text-[10px] font-bold tracking-[0.3em] uppercase">Module</span><div class="h-[1px] flex-grow bg-primary/20"></div></div>
+            <h2 class="text-3xl md:text-4xl font-headline font-bold tracking-tighter mb-4 text-on-surface">MDTO Export &amp; Vernietigingsreviews</h2>
+            <p class="text-on-surface-variant leading-relaxed mb-6">Importeer een Purview-dispositie-export, laat dossiers beoordelen door de juiste rollen, en lever gevalideerde MDTO/SIP-pakketten op voor het e-Depot.</p>
+            <ul class="space-y-3">
+                <li class="flex gap-3 text-on-surface-variant"><span class="material-symbols-outlined text-primary text-xl">upload_file</span><span>Import van Purview-dispositie-CSV naar dossiers en series.</span></li>
+                <li class="flex gap-3 text-on-surface-variant"><span class="material-symbols-outlined text-primary text-xl">how_to_reg</span><span>Beoordelingsworkflow: Informatiebeheer → Data-eigenaar → Archivaris → vaststellen.</span></li>
+                <li class="flex gap-3 text-on-surface-variant"><span class="material-symbols-outlined text-primary text-xl">archive</span><span>Automatische MDTO-XML en SIP-pakketten, conform de Selectielijst.</span></li>
+            </ul>
+        </div>
+        <div class="reveal-child">
+            <!-- SCREENSHOT SLOT: vervang door echte schermafbeelding (met data) van Vernietigingsreviews -->
+            <div class="aspect-video bg-surface-container-lowest border border-outline-variant/10 flex items-center justify-center clipped-corner">
+                <div class="text-center px-6">
+                    <span class="material-symbols-outlined text-primary text-4xl mb-3">account_tree</span>
+                    <p class="text-on-surface-variant text-sm">Purview CSV → Dossier → Beoordeling → SIP/MDTO → e-Depot</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Module 2: SharePoint-inrichting -->
+<section class="reveal py-20 px-6 md:px-16 lg:px-24 bg-surface-container-low">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="reveal-child order-2 lg:order-1">
+            <!-- SCREENSHOT SLOT: vervang door echte schermafbeelding (met data) van Site-inrichting -->
+            <div class="aspect-video bg-surface-container-lowest border border-outline-variant/10 flex items-center justify-center clipped-corner">
+                <div class="text-center px-6">
+                    <span class="material-symbols-outlined text-primary text-4xl mb-3">dashboard_customize</span>
+                    <p class="text-on-surface-variant text-sm">Blauwdruk → Site + Team + bibliotheken</p>
+                </div>
+            </div>
+        </div>
+        <div class="reveal-child order-1 lg:order-2">
+            <div class="flex items-center gap-3 text-primary mb-2"><span class="text-[10px] font-bold tracking-[0.3em] uppercase">Module</span><div class="h-[1px] flex-grow bg-primary/20"></div></div>
+            <h2 class="text-3xl md:text-4xl font-headline font-bold tracking-tighter mb-4 text-on-surface">SharePoint-inrichting</h2>
+            <p class="text-on-surface-variant leading-relaxed mb-6">Richt consistente SharePoint-omgevingen in vanuit herbruikbare blauwdrukken — sites, Teams, bibliotheken, contenttypes en weergaven, in één gecontroleerde stap.</p>
+            <ul class="space-y-3">
+                <li class="flex gap-3 text-on-surface-variant"><span class="material-symbols-outlined text-primary text-xl">content_copy</span><span>Blauwdrukken op basis van een referentiesite.</span></li>
+                <li class="flex gap-3 text-on-surface-variant"><span class="material-symbols-outlined text-primary text-xl">groups</span><span>Nieuwe Microsoft Team + site + standaardkanalen.</span></li>
+                <li class="flex gap-3 text-on-surface-variant"><span class="material-symbols-outlined text-primary text-xl">checklist</span><span>Idempotente, herhaalbare provisioning met statusoverzicht.</span></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Compliance & techniek -->
+<section class="reveal py-20 px-6 md:px-16 lg:px-24">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex items-center gap-3 text-primary mb-2"><span class="text-[10px] font-bold tracking-[0.3em] uppercase">Compliance &amp; Techniek</span><div class="h-[1px] flex-grow bg-primary/20"></div></div>
+        <h2 class="text-3xl md:text-4xl font-headline font-bold tracking-tighter mb-10 text-on-surface">Gebouwd op standaarden</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="reveal-child bg-surface-container-low p-6 border-l-4 border-primary"><h3 class="font-headline text-sm font-bold uppercase tracking-tight mb-2 text-on-surface">MDTO &amp; Selectielijst</h3><p class="text-sm text-on-surface-variant leading-relaxed">Output conform de MDTO-standaard van het Nationaal Archief en de gemeentelijke Selectielijst.</p></div>
+            <div class="reveal-child bg-surface-container-low p-6 border-l-4 border-primary"><h3 class="font-headline text-sm font-bold uppercase tracking-tight mb-2 text-on-surface">Microsoft 365 &amp; Entra ID</h3><p class="text-sm text-on-surface-variant leading-relaxed">Inloggen met uw eigen Microsoft-account; veilige toegang tot SharePoint via Entra ID.</p></div>
+            <div class="reveal-child bg-surface-container-low p-6 border-l-4 border-primary"><h3 class="font-headline text-sm font-bold uppercase tracking-tight mb-2 text-on-surface">Multi-tenant &amp; audit</h3><p class="text-sm text-on-surface-variant leading-relaxed">Strikte scheiding per organisatie (row-level security) en een volledige, doorzoekbare audit-trail.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- Voor wie -->
+<section class="reveal py-20 px-6 md:px-16 lg:px-24 bg-surface-container-low">
+    <div class="max-w-4xl mx-auto text-center">
+        <div class="flex items-center justify-center gap-3 text-primary mb-2"><span class="text-[10px] font-bold tracking-[0.3em] uppercase">Voor Wie</span></div>
+        <h2 class="text-3xl md:text-4xl font-headline font-bold tracking-tighter mb-6 text-on-surface">Voor gemeenten en overheidsorganisaties</h2>
+        <p class="text-lg text-on-surface-variant leading-relaxed">Altitecture One is gemaakt voor gemeenten, overheidsorganisaties en archiefinstellingen die Microsoft 365 gebruiken en hun informatiehuishouding aantoonbaar op orde willen brengen.</p>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="reveal py-24 px-6 md:px-16 lg:px-24 bg-primary-container relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-48 h-48 bg-on-primary-container/5 -mr-24 -mt-24 rotate-45"></div>
+    <div class="max-w-7xl mx-auto relative z-10 text-center">
+        <h2 class="text-4xl md:text-5xl font-headline font-bold tracking-tighter mb-4 text-on-primary-container">Benieuwd wat Altitecture One voor u kan doen?</h2>
+        <p class="text-lg text-on-primary-container/70 mb-10 max-w-xl mx-auto">Plan een demo — we laten zien hoe u vanuit SharePoint naar een gevalideerd MDTO-archief komt.</p>
+        <a href="mailto:info@altitecture.nl" class="inline-block bg-on-primary-container text-primary-container font-headline uppercase text-sm font-bold tracking-widest px-10 py-3 clipped-corner active:scale-95 transition-transform hover:opacity-90 focus-visible:ring-2 focus-visible:ring-on-primary-container focus-visible:ring-offset-2 focus-visible:ring-offset-primary-container">Demo aanvragen</a>
+    </div>
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant/10 py-8 px-6 md:px-16 lg:px-24">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex items-center gap-2">
+            <img alt="Altitecture Logo" class="w-6 h-6" src="/images/logo.png" />
+            <span class="text-sm font-bold tracking-tighter text-primary font-headline">Altitecture</span>
+        </div>
+        <div class="flex gap-6">
+            <a class="text-on-surface-variant text-xs uppercase tracking-wider hover:text-primary transition-colors" href="/#services">Diensten</a>
+            <a class="text-on-surface-variant text-xs uppercase tracking-wider hover:text-primary transition-colors" href="/#process">Werkwijze</a>
+            <a class="text-on-surface-variant text-xs uppercase tracking-wider hover:text-primary transition-colors" href="/#product">Product</a>
+            <a class="text-on-surface-variant text-xs uppercase tracking-wider hover:text-primary transition-colors" href="/#portfolio">Portfolio</a>
+            <a class="text-on-surface-variant text-xs uppercase tracking-wider hover:text-primary transition-colors" href="/#about">Over Ons</a>
+            <a class="text-on-surface-variant text-xs uppercase tracking-wider hover:text-primary transition-colors" href="/#contact">Contact</a>
+        </div>
+        <p class="text-on-surface-variant/40 text-xs">&copy; 2026 Altitecture. Alle rechten voorbehouden.</p>
+    </div>
+</footer>
+
+<!-- Visual Accents -->
+<div class="fixed bottom-0 left-0 w-full h-[1px] bg-primary/10 pointer-events-none"></div>
+<div class="fixed top-0 left-0 w-[1px] h-screen bg-primary/5 pointer-events-none"></div>
+
+<!-- Scroll Reveal -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Mobile nav toggle
+        const navBtn = document.getElementById('mobile-nav-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        const iconMenu = navBtn.querySelector('.icon-menu');
+        const iconClose = navBtn.querySelector('.icon-close');
+
+        function toggleNav() {
+            const isOpen = mobileNav.classList.toggle('open');
+            iconMenu.classList.toggle('hidden', isOpen);
+            iconClose.classList.toggle('hidden', !isOpen);
+            navBtn.setAttribute('aria-expanded', isOpen);
+        }
+
+        navBtn.addEventListener('click', toggleNav);
+
+        // Close mobile nav on link click
+        document.querySelectorAll('#mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                iconMenu.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+                navBtn.setAttribute('aria-expanded', 'false');
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
